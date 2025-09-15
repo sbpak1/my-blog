@@ -52,7 +52,9 @@ function App() {
 
     <div className='list'>
       <div>
-        <h4>{title[0]}<span onClick={()=>{
+        <h4 onClick={()=>{
+          setModal(sortedTitle);
+        }}>{title[0]}<span onClick={()=>{
           const newLikes = [...like];
           newLikes[0]++;
           setLike(newLikes);
