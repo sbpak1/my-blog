@@ -58,6 +58,20 @@ function Blog(props){
     setNewContent('');
     
   }
+  // 게시글 삭제 처리 함수
+  function deletePost(index){
+    // 전달 된 색인값을 제외 한 배열을 생성
+    const newTitle = props.title.filter((_, i)=> i !== index);
+    const newContent = props.details.filter((_, i)=> i !== index);
+    const newDate = props.createDate.filter((_, i)=> i !== index);
+    const newLike = props.like.filter((_, i)=> i !== index);
+
+    props.setTitle(newTitle);
+    props.setDetails(newContent);
+    props.setCreateDate(newDate);
+    props.setLike(newLike);
+    
+  }
 
   return(
     <>
@@ -81,7 +95,13 @@ function Blog(props){
                   newLikes[index]++
                   props.setLike(newLikes)
                   }}>👍
-                </span>{props.like[index]} 
+                </span>{props.like[index]}
+                {/* 삭제 이미지 넣기 */}
+                &nbsp;
+                <span onClick={(e)=>{
+                  e.stopPropagation();
+                  deletePost(index);
+                }}>❌</span> 
               </h4>      
               <p>작성일 : {props.createDate[index]}</p>
             </div>  
